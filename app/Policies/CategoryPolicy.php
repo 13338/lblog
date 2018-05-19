@@ -42,7 +42,7 @@ class CategoryPolicy
      */
     public function update(User $user, Category $category)
     {
-        //
+        return $user->id == env('ADMIN_ID', 1);
     }
 
     /**
