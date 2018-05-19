@@ -37,7 +37,9 @@ class CategoryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', Category::class);
+        $id = Category::create($request->all());
+        return redirect()->route('category.show', ['category' => $id]);
     }
 
     /**
