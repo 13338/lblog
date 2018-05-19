@@ -30,7 +30,7 @@ class CategoryPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->id == env('ADMIN_ID', 1);
     }
 
     /**
