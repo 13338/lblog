@@ -25,7 +25,8 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+        $this->authorize('create', Post::class);
+        return view ('post.create');
     }
 
     /**
@@ -36,7 +37,7 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->authorize('create', Post::class);
     }
 
     /**
@@ -58,7 +59,7 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        //
+        $this->authorize('update', $post);
     }
 
     /**
@@ -70,7 +71,7 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        //
+        $this->authorize('update', $post);
     }
 
     /**
@@ -81,6 +82,6 @@ class PostController extends Controller
      */
     public function destroy(Post $post)
     {
-        //
+        $this->authorize('delete', $post);
     }
 }

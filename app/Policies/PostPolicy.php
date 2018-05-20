@@ -30,7 +30,7 @@ class PostPolicy
      */
     public function create(User $user)
     {
-        //
+        return $user->id == env('ADMIN_ID', 1);
     }
 
     /**
@@ -42,7 +42,7 @@ class PostPolicy
      */
     public function update(User $user, Post $post)
     {
-        //
+        return $user->id == env('ADMIN_ID', 1);
     }
 
     /**
@@ -54,6 +54,6 @@ class PostPolicy
      */
     public function delete(User $user, Post $post)
     {
-        //
+        return $user->id == env('ADMIN_ID', 1);
     }
 }
