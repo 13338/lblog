@@ -45,6 +45,7 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create', Post::class);
+        $request->merge(['sortable' => Post::all()->max('sortable') + 1]);
         $id = Post::create($request->all());
         return redirect()->route('post.show', ['post' => $id]);
     }
@@ -85,6 +86,24 @@ class PostController extends Controller
         $this->authorize('update', $post);
         $post->fill($request->all())->save();
         return redirect()->route('post.show', ['post' => $post->id]);
+    }
+
+    /**
+     * Update the sortable position resource.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function sortable(Request $request, Post $post)
+    {
+        $this->authorize('sortable', Post::class);
+        if ($post->sortable > (int)$request->sortable) {
+            Post::whereBetween('sortable', [$request->sortable, $post->sortable - 1])->increment('sortable', 1);
+        } else {
+            Post::whereBetween('sortable', [$post->sortable + 1, $request->sortable])->decrement('sortable', 1);
+        }
+        $post->fill($request->all())->save();
     }
 
     /**
