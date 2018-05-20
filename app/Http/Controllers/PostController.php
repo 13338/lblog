@@ -82,6 +82,8 @@ class PostController extends Controller
     public function update(Request $request, Post $post)
     {
         $this->authorize('update', $post);
+        $post->fill($request->all())->save();
+        return redirect()->route('post.show', ['post' => $post->id]);
     }
 
     /**
