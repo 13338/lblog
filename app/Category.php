@@ -13,6 +13,17 @@ class Category extends Model
      */
     public function posts()
     {
-        return $this->hasMany('App\Post')->paginate(10);
+        return $this->hasMany('App\Post');
+    }
+
+    function delete()
+    {
+        
+        foreach($this->posts as $post)
+        {
+            $post->delete();
+        }
+        
+        parent::delete();
     }
 }

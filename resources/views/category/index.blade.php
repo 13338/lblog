@@ -15,6 +15,12 @@
           <h5 class="card-title">{{ $category->name }}</h5>
           <p class="card-text">{{ $category->description }}</p>
           <a href="{{ route('category.show', ['category' => $category->id]) }}" class="btn btn-primary">Show posts</a>
+          @can('update', $category)
+          <a href="{{ route('category.edit', ['category' => $category->id]) }}" class="btn btn-warning">Edit</a>
+          @endcan
+          @can('delete', $category)
+          <a onclick="destroy(this);" data-url="{{ route('category.destroy', ['category' => $category->id]) }}" class="btn btn-danger">Delete</a>
+          @endcan
         </div>
       </div>
     </div>
