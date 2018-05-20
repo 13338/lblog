@@ -76,6 +76,8 @@ class CategoryController extends Controller
     public function update(Request $request, Category $category)
     {
         $this->authorize('update', $category);
+        $category->fill($request->all())->save();
+        return redirect()->route('category.show', ['category' => $category->id]);
     }
 
     /**
