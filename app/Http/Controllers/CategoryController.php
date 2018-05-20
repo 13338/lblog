@@ -51,7 +51,17 @@ class CategoryController extends Controller
      */
     public function show(Category $category)
     {
-        return view('category.show', compact(['category']));
+        switch (request()->sort) {
+            case 'myorder':
+                $posts = Post::orderBy('sortable');
+                break;
+            
+            default:
+                $posts = Post::orderBy('name');
+                break;
+        }
+        $posts = $posts->paginate(10);
+        return view('category.show', compact(['category', 'posts']));
     }
 
     /**

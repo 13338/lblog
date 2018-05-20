@@ -15,7 +15,16 @@ class PostController extends Controller
      */
     public function index()
     {
-        $posts = Post::paginate(10);
+        switch (request()->sort) {
+            case 'myorder':
+                $posts = Post::orderBy('sortable');
+                break;
+            
+            default:
+                $posts = Post::orderBy('name');
+                break;
+        }
+        $posts = $posts->paginate(10);
         return view ('post.index', compact(['posts']));
     }
 
