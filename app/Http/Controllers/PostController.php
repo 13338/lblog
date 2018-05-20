@@ -44,6 +44,8 @@ class PostController extends Controller
     public function store(Request $request)
     {
         $this->authorize('create', Post::class);
+        $id = Post::create($request->all());
+        return redirect()->route('post.show', ['post' => $id]);
     }
 
     /**
