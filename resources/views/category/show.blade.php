@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center" id="sortable">
     <div class="col-md-8 mb-4">
       <h1>
         Category: {{ $category->name }}
@@ -13,7 +13,12 @@
     <div class="col-md-8 mb-4">
     <div class="card">
       <div class="card-body">
-        <h5 class="card-title"><a href="{{ route('post.show', ['post' => $post->id]) }}">{{ $post->name }}</a></h5>
+        <h5 class="card-title">
+          @can('create', App\Post::class)
+          <span class="drag-handle mr-2">&#9776;</span>
+          @endcan
+          <a href="{{ route('post.show', ['post' => $post->id]) }}">{{ $post->name }}</a>
+        </h5>
         {{ $post->content }}
       </div>
       <div class="card-footer text-muted">

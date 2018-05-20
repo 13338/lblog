@@ -46,6 +46,17 @@ class PostPolicy
     }
 
     /**
+     * Determine whether the user can sort posts.
+     *
+     * @param  \App\User  $user
+     * @return mixed
+     */
+    public function sortable(User $user)
+    {
+        return $user->id == env('ADMIN_ID', 1);
+    }
+
+    /**
      * Determine whether the user can delete the post.
      *
      * @param  \App\User  $user
