@@ -68,6 +68,8 @@ class PostController extends Controller
     public function edit(Post $post)
     {
         $this->authorize('update', $post);
+        $categories = Category::all();
+        return view('post.edit', compact(['categories', 'post']));
     }
 
     /**
