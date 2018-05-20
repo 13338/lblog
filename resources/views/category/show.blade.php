@@ -3,6 +3,12 @@
 @section('content')
 <div class="container">
   <div class="row justify-content-center">
+    <div class="col-md-8 mb-4">
+      <h1>
+        Category: {{ $category->name }}
+      </h1>
+      <p>{{ $category->description }}</p>
+    </div>
     @foreach ($category->posts() as $post)
     <div class="col-md-8 mb-4">
     <div class="card">
