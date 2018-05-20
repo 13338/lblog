@@ -40,6 +40,7 @@ class CategoryController extends Controller
     {
         $this->authorize('create', Category::class);
         $id = Category::create($request->all());
+        $request->session()->flash('status', 'Category added!');
         return redirect()->route('category.show', ['category' => $id]);
     }
 
@@ -87,6 +88,7 @@ class CategoryController extends Controller
     {
         $this->authorize('update', $category);
         $category->fill($request->all())->save();
+        $request->session()->flash('status', 'Category updated!');
         return redirect()->route('category.show', ['category' => $category->id]);
     }
 
@@ -100,6 +102,7 @@ class CategoryController extends Controller
     {
         $this->authorize('delete', $category);
         $category->delete();
+        $request->session()->flash('status', 'Category deleted!');
         return redirect()->route('category.index');
     }
 }

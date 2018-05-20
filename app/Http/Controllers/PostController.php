@@ -56,6 +56,7 @@ class PostController extends Controller
         $this->authorize('create', Post::class);
         $request->merge(['sortable' => Post::all()->max('sortable') + 1]);
         $id = Post::create($request->all());
+        $request->session()->flash('status', 'Post added!');
         return redirect()->route('post.show', ['post' => $id]);
     }
 
@@ -94,6 +95,7 @@ class PostController extends Controller
     {
         $this->authorize('update', $post);
         $post->fill($request->all())->save();
+        $request->session()->flash('status', 'Post updated!');
         return redirect()->route('post.show', ['post' => $post->id]);
     }
 
@@ -125,6 +127,7 @@ class PostController extends Controller
     {
         $this->authorize('delete', $post);
         $post->delete();
+        $request->session()->flash('status', 'Post deleted!');
         return redirect()->route('post.index');
     }
 }

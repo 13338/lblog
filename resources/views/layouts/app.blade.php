@@ -84,6 +84,26 @@
     
 
     <main class="py-4">
+      <div class="container">
+        <div class="row">
+          @if (count($errors)>0 || Session::has('status'))
+          <div class="col-md-6 mb-4">
+            @if (Session::has('status'))
+            <div class="alert alert-success" role="alert">
+              {!! Session::get('status') !!}
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            </div>
+            @endif
+            @foreach ($errors->all() as $error)
+            <div class="alert alert-danger" role="alert">
+              {{ $error }}
+              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            </div>
+            @endforeach
+          </div>
+          @endif
+        </div>
+      </div>
       @yield('content')
     </main>
     
