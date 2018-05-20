@@ -9,7 +9,7 @@
       </h1>
       <p>{{ $category->description }}</p>
     </div>
-    @foreach ($category->posts() as $post)
+    @foreach ($category->posts()->paginate(10) as $post)
     <div class="col-md-8 mb-4">
     <div class="card">
       <div class="card-body">
@@ -35,7 +35,7 @@
   </div>
   <div class="row justify-content-center">
     <div class="col-md-8">
-      {{ $category->posts()->links() }}
+      {{ $category->posts()->paginate(10)->links() }}
     </div>
   </div>
 </div>
