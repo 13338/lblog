@@ -28,10 +28,14 @@
 
         <div class="collapse navbar-collapse" id="navbarsExample07">
           <ul class="navbar-nav mr-auto">
-            <li class="nav-item{{ Request::is('/category') ? ' active' : '' }}">
-              <a class="nav-link" href="{{ route('category.index') }}">Categories</a>
+            <li class="nav-item dropdown{{ Request::is('category') ? ' active' : '' }}">
+              <a class="nav-link dropdown-toggle" href="{{ route('category.index') }}" data-toggle="dropdown" aria-haspopup="true" aria-epanded="false">Categories</a>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="{{ route('category.index') }}">List</a>
+                <a class="dropdown-item" href="{{ route('category.create') }}">Create</a>
+              </div>
             </li>
-            <li class="nav-item{{ Request::is('/post/create') ? ' active' : '' }}">
+            <li class="nav-item{{ Request::is('post/create') ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('post.create') }}">Create post</a>
             </li>
           </ul>
@@ -52,7 +56,7 @@
                   {{ Auth::user()->name }} <span class="caret"></span>
                 </a>
 
-                <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="{{ route('logout') }}"
                      onclick="event.preventDefault();
                            document.getElementById('logout-form').submit();">
