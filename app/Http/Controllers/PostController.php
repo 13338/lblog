@@ -26,7 +26,13 @@ class PostController extends Controller
     public function create()
     {
         $this->authorize('create', Post::class);
-        return view ('post.create');
+        $categoties = Category::all();
+        if (count($categoties) == 0)
+            // redirect if categories not exist
+            return redirect()->route('category.create');
+        else
+            // create view if categories exist
+            return view('post.create', compact(['categoties']));
     }
 
     /**
