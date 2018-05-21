@@ -1,3 +1,23 @@
+// Search
+$("#searchinput").change(function() {
+	$.ajax({
+	    dataType: "json",
+	    url: '/post/search',
+	    data: {q: $('#searchinput').val()},
+	    success: function (result) {
+	        console.log(result);
+	        $('#search').empty();
+	        if (result.total > 0) {
+	        	$.each(result.data, function(index, element) {
+		            $('#search').append('<div class="col-md-8 mb-4"> <div class="card"> <div class="card-body"> <h5 class="card-title"> <a href="/post/' + element.id + '">' + element.name + '</a> </h5> ' + element.content + ' </div> <div class="card-footer text-muted"> <a href="/post/' + element.id + '" class="btn btn-sm btn-primary">Show</a> <span class="float-right"> ' + element.created_at + ' </span> </div> </div> </div>');
+		        });
+	        } else {
+	        	$('#search').append('<p class="lead">No result :(</p>');
+	        }
+	        
+	    },
+	});
+});
 // Destroy
 function destroy(element) {
 	if (confirm("Delete ?")) {

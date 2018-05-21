@@ -45,6 +45,7 @@ class PostController extends Controller
                 break;
         }
         $posts = $posts->where('name', 'LIKE', '%'. request()->q . '%')->paginate(10);
+        if (request()->wantsJson()) return $posts;
         return view ('post.search', compact(['posts']));
     }
 
