@@ -50,8 +50,8 @@
           <!-- Right Side Of Navbar -->
           <ul class="navbar-nav ml-auto">
             <li>
-              <form class="form-inline my-2 my-md-0">
-                <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+              <form class="form-inline my-2 my-md-0" action="{{ route('post.search') }}">
+                <input class="form-control" type="text" placeholder="Search" aria-label="Search" name="q">
               </form>
             </li>
             <!-- Authentication Links -->
