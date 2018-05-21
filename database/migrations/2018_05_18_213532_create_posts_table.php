@@ -21,6 +21,7 @@ class CreatePostsTable extends Migration
             $table->text('content');
             $table->timestamps();
         });
+        DB::statement('ALTER TABLE posts ADD FULLTEXT INDEX full (name)');
     }
 
     /**
