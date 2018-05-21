@@ -15,6 +15,7 @@ Route::get('/', 'PostController@index')->name('index');
 
 Auth::routes();
 
+Route::get('/post/search', 'PostController@search')->name('post.search');
 Route::resource('post', 'PostController');
-Route::any('/post/{post}/sortable', 'PostController@sortable')->name('post.sortable');
+Route::put('/post/{post}/sortable', 'PostController@sortable')->name('post.sortable');
 Route::resource('category', 'CategoryController');

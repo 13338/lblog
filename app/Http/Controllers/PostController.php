@@ -29,6 +29,26 @@ class PostController extends Controller
     }
 
     /**
+     * Display a listing of the found resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function search()
+    {
+        switch (request()->sort) {
+            case 'myorder':
+                $posts = Post::orderBy('sortable');
+                break;
+            
+            default:
+                $posts = Post::orderBy('name');
+                break;
+        }
+        $posts = $posts->where('name', 'LIKE', '%'. request()->q . '%')->paginate(10);
+        return view ('post.search', compact(['posts']));
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
