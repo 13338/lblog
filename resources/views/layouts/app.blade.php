@@ -85,9 +85,9 @@
 
     <main class="py-4">
       <div class="container">
-        <div class="row">
+        <div class="row justify-content-center">
           @if (count($errors)>0 || Session::has('status'))
-          <div class="col-md-6 mb-4">
+          <div class="col-md-8 mb-2">
             @if (Session::has('status'))
             <div class="alert alert-success" role="alert">
               {!! Session::get('status') !!}
