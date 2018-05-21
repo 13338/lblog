@@ -61,7 +61,7 @@ class CategoryController extends Controller
                 $posts = Post::orderBy('name');
                 break;
         }
-        $posts = $posts->paginate(10);
+        $posts = $posts->where('category_id', $category->id)->paginate(10);
         return view('category.show', compact(['category', 'posts']));
     }
 
