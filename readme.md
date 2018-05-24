@@ -1,4 +1,5 @@
 # lBlog - simple Laravel Blog
+![Screenshot](preview.png)
 
 ## About
  - lBlog - simple blog on Laravel 5.6 with the ability to administer
