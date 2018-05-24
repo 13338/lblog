@@ -37,6 +37,6 @@ php artisan migrate
 ```
 7. Run server:
 ```bash
-php artisan serve --port=8000
+php artisan serve --port=1338
 ```
-##### You can now access your project at localhost:8000. Enjoy! :)
+**You can now access your project at localhost:1338. Enjoy! :)**
