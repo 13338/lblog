@@ -148,7 +148,6 @@ class PostController extends Controller
     {
         $this->authorize('delete', $post);
         $post->delete();
-        $request->session()->flash('status', 'Post deleted!');
-        return redirect()->route('post.index');
+        request()->session()->flash('status', 'Post deleted!');
     }
 }
