@@ -47,8 +47,8 @@
         @endcan
         <span class="text-success saved ml-3"></span>
         <span class="text-danger fail ml-3"></span>
-        <span class="float-right"{!! (!empty($post->updated_at)) ? ' title="Last update '.$post->updated_at.'"' : '' !!}>
-          {{ $post->created_at }}
+        <span class="float-right"{!! (!empty($post->updated_at)) ? ' title="Last update '.\Carbon\Carbon::createFromTimeStamp(strtotime($post->updated_at))->diffForHumans().'"' : '' !!}>
+          {{ \Carbon\Carbon::createFromTimeStamp(strtotime($post->created_at))->diffForHumans() }}
         </span>
       </div>
     </div>

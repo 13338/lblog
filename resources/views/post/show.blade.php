@@ -16,8 +16,8 @@
           @can('delete', $post)
           <a onclick="destroy(this);" data-url="{{ route('post.destroy', ['post' => $post->id]) }}" class="btn btn-sm btn-danger text-white">Delete</a>
           @endcan
-          <span class="float-right"{!! (!empty($post->updated_at)) ? ' title="Last update '.$post->updated_at.'"' : '' !!}>
-            {{ $post->created_at }}
+          <span class="float-right"{!! (!empty($post->updated_at)) ? ' title="Last update '.\Carbon\Carbon::createFromTimeStamp(strtotime($post->updated_at))->diffForHumans().'"' : '' !!}>
+            {{ \Carbon\Carbon::createFromTimeStamp(strtotime($post->created_at))->diffForHumans() }}
           </span>
         </div>
       </div>
