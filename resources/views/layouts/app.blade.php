@@ -40,12 +40,16 @@
               <a class="nav-link dropdown-toggle" href="{{ route('category.index') }}" data-toggle="dropdown" aria-haspopup="true" aria-epanded="false">Categories</a>
               <div class="dropdown-menu">
                 <a class="dropdown-item" href="{{ route('category.index') }}">List</a>
+                @can('create', App\Category::class)
                 <a class="dropdown-item" href="{{ route('category.create') }}">Create</a>
+                @endcan
               </div>
             </li>
+            @can('create', App\Post::class)
             <li class="nav-item{{ Request::is('post/create') ? ' active' : '' }}">
               <a class="nav-link" href="{{ route('post.create') }}">Create post</a>
             </li>
+            @endcan
           </ul>
           <!-- Right Side Of Navbar -->
           <ul class="navbar-nav ml-auto">
